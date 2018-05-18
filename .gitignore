@@ -7,9 +7,6 @@ yarn-error.log*
 /test/unit/coverage/
 /test/e2e/reports/
 selenium-debug.log
-package.json
-index.html
-/build/
 
 
 # Editor directories and files
