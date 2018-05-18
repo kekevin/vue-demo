@@ -1,6 +1,6 @@
 # vuedemo
 
-> no description
+> a small demo about vue
 
 ## Build Setup
 
