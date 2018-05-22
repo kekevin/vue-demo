@@ -1,5 +1,5 @@
 <template>
-    <div>sun</div>
+    <div>son</div>
 </template>
 
 <script>

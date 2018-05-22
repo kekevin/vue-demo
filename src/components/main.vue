@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <div>
+  <div class="model-box">
       <menuTop></menuTop>
-    </div>
-    <div>
-      <menu-left></menu-left>
-      <viewMain></viewMain>
+    <div class="box-content">
+        <!-- <menu-left></menu-left> -->
+        <viewMain></viewMain>
     </div>
   </div>
 </template>

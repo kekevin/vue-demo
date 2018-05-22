@@ -1,7 +1,5 @@
 <template>
-    <div>
-        Top
-    </div>
+    <div>Left</div>
 </template>
 
 <script>

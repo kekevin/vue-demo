@@ -2,22 +2,29 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import main from '@/components/main'
 
-import father from '@/components/vuejs/component/betweenFatherSon/father'
+import plat from '@/components/vuejs/component/betweenFatherSon/plat'
 import son from '@/components/vuejs/component/betweenFatherSon/son'
+import platMain from '@/components/platForm/platMain'
+
 import vueTest from '@/components/vuejs/vueTest'
 
 Vue.use(Router)
 
 export default new Router({
     routes: [{
-            path: '/',
+            path: '/learn',
             name: 'main',
             component: main,
             children: [
-                { path: 'father', component: father },
+                { path: 'plat', component: plat },
                 { path: 'son', component: son },
 
             ]
+        },
+        {
+            path: '/',
+            name: 'platMain',
+            component: platMain,
         },
         {
             path: '/test',

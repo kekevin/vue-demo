@@ -14,13 +14,13 @@ export default {
         tab: [
           {
             id: 1,
-            text: "父组件",
+            text: "研判平台",
             imgClass: "icon iconfont icon-shengxiao",
-            src: "father"
+            src: "plat"
           },
           {
             id: 2,
-            text: "子组件",
+            text: "切换",
             imgClass: "icon iconfont icon-shengxiao",
             src: "son"
           }
@@ -30,6 +30,7 @@ export default {
   },
   methods: {
     showTitle(url) {
+      console.log('run switch')
       if (url) {
         this.$router.push("/" + url);
       }
@@ -41,14 +42,16 @@ export default {
 <style scoped>
 .menuLeft {
   margin: 0 1px 2px 3px;
-  width: 60px;
+  width: 100px;
 }
 .menuLeft li {
   display: block;
-  width: 60px;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
   float: left;
-  /* background-color: lightblue; */
-  border: 1px solid lightblue;
+  background-color: lightblue;
+  border: 1px solid black;
 }
 </style>
 

@@ -34,4 +34,4 @@ var pageTools = {
         }
     }
 }
-export default pageAtFunction
+export default pageTools

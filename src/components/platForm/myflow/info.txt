@@ -1,0 +1,13 @@
+jpdl的web流程编辑器的前后端实现
+
+前端：使用myflow.js实现，转换成一个json格式的数据，详情见http://blog.csdn.net/lilinoscar/article/details/42460895，
+		我提交的代码当中做了一些修改，
+		1：点击保存到本地，执行的代码在myflow.js第109行，现在执行的是打印json数据
+		2：左侧的菜单除了html里面的，还有myflw.jpdl4.js，这里只实现了fork-join和基本的task，有其它需求的请自行二次开发
+		3:如果更改资源路径，记得除了html当中，myflw.jpdl4.js也要修改，因为其中使用了的图片的相对路径
+
+后台：使用java实现了，json转成jpdl要求的xml，根据xml生成png流程图片，将xml文件和png图片打包成zip
+		1:这是一个java项目，测试类请查看src/sofocus/bpm/jbpm/jpdl/Test.java和src/sofocus/bpm/jbpm/jpdl/util/Test.java
+		2:详情请查看源码的注释，同样没有完全实现jbpm的所有功能，有需求请自行二次开发
+		3：作为一个demo功能很完善了，请自行添加到web项目中
+		4：最后生打包成的zip，就可以进行部署了
