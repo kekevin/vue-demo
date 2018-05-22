@@ -1,12 +1,12 @@
 <template>
 <div>
 	<div style="margin-bottom: 20px;">
-		<el-button size="small" @click="addTab(editableTabsValue2)">
+		<el-button size="small" @click="addTab(tabVal)">
 			add tab
 		</el-button>
 	</div>
-	<el-tabs v-model="editableTabsValue2" type="card" closable @tab-remove="removeTab">
-		<el-tab-pane v-for="(item, index) in editableTabs2" :key="item.name" :label="item.title" :name="item.name">
+	<el-tabs v-model="tabVal" type="card" closable @tab-remove="removeTab">
+		<el-tab-pane v-for="(item, index) in tabs" :key="item.name" :label="item.title" :name="item.name">
 			{{item.content}}
 		</el-tab-pane>
 	</el-tabs>
@@ -16,8 +16,8 @@
 export default {
   data() {
     return {
-      editableTabsValue2: "2",
-      editableTabs2: [
+      tabVal: "2",
+      tabs: [
         {
           title: "Tab 1",
           name: "1",
@@ -35,16 +35,16 @@ export default {
   methods: {
     addTab(targetName) {
       let newTabName = ++this.tabIndex + "";
-      this.editableTabs2.push({
+      this.tabs.push({
         title: "New Tab",
         name: newTabName,
         content: "New Tab content"
       });
-      this.editableTabsValue2 = newTabName;
+      this.tabVal = newTabName;
     },
     removeTab(targetName) {
-      let tabs = this.editableTabs2;
-      let activeName = this.editableTabsValue2;
+      let tabs = this.tabs;
+      let activeName = this.tabVal;
       if (activeName === targetName) {
         tabs.forEach((tab, index) => {
           if (tab.name === targetName) {
@@ -55,8 +55,8 @@ export default {
           }
         });
       }
-      this.editableTabsValue2 = activeName;
-      this.editableTabs2 = tabs.filter(tab => tab.name !== targetName);
+      this.tabVal = activeName;
+      this.tabs = tabs.filter(tab => tab.name !== targetName);
     }
   }
 };
