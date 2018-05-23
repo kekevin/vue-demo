@@ -1,4 +1,4 @@
-(function ($) {
+(function($) {
 
     var myflow = {};
     myflow.config = {
@@ -94,7 +94,7 @@
                     name: 'text',
                     label: '显示',
                     value: '',
-                    editor: function () {
+                    editor: function() {
                         return new myflow.editors.textEditor();
                     }
                 }
@@ -109,7 +109,7 @@
             path: {},
             states: {},
             save: {
-                onclick: function (data) {
+                onclick: function(data) {
                     console.log(data)
                     // alert(data);
                 }
@@ -117,8 +117,8 @@
         },
         props: { // 属性编辑器
             attr: {
-                top: 300,//属性编辑器初始位置kkkkkk
-                right: 60
+                top: 160, //属性编辑器初始位置kkkkkk
+                right: 10
             },
             props: {}
         },
@@ -146,7 +146,7 @@
 
     //工具集
     myflow.util = {
-        isLine: function (p1, p2, p3) { // 三个点是否在一条直线上
+        isLine: function(p1, p2, p3) { // 三个点是否在一条直线上
             var s, p2y;
             if ((p1.x - p3.x) == 0)
                 s = 1;
@@ -160,20 +160,20 @@
             }
             return false;
         },
-        center: function (p1, p2) { // 两个点的中间点
+        center: function(p1, p2) { // 两个点的中间点
             return {
                 x: (p1.x - p2.x) / 2 + p2.x,
                 y: (p1.y - p2.y) / 2 + p2.y
             };
         },
-        nextId: (function () {
+        nextId: (function() {
             var uid = 0;
-            return function () {
+            return function() {
                 return ++uid;
             };
         })(),
 
-        connPoint: function (rect, p) { // 计算矩形中心到p的连线与矩形的交叉点
+        connPoint: function(rect, p) { // 计算矩形中心到p的连线与矩形的交叉点
             var start = p,
                 end = {
                     x: rect.x + rect.width / 2,
@@ -187,8 +187,8 @@
             // 计算箭头位置
             var xFlag = start.y < end.y ? -1 : 1,
                 yFlag = start.x < end.x ?
-                    -1 :
-                    1,
+                -1 :
+                1,
                 arrowTop, arrowLeft;
             // 按角度判断箭头位置
             if (Math.abs(tag) > rectTag && xFlag == -1) { // top边
@@ -210,7 +210,7 @@
             };
         },
 
-        arrow: function (p1, p2, r) { // 画箭头，p1 开始位置,p2 结束位置, r前头的边长
+        arrow: function(p1, p2, r) { // 画箭头，p1 开始位置,p2 结束位置, r前头的边长
             var atan = Math.atan2(p1.y - p2.y, p2.x - p1.x) * (180 / Math.PI);
 
             var centerX = p2.x - r * Math.cos(atan * (Math.PI / 180));
@@ -225,13 +225,13 @@
                 x: x2,
                 y: y2
             }, {
-                    x: x3,
-                    y: y3
-                }];
+                x: x3,
+                y: y3
+            }];
         }
     }
 
-    myflow.rect = function (o, r, id) { //o参数就是对象
+    myflow.rect = function(o, r, id) { //o参数就是对象
         var _this = this,
             _uid = myflow.util.nextId(),
             _o = $.extend(true, {},
@@ -261,46 +261,46 @@
             _o.attr.y + (_o.attr.height - _o.img.height) / 2, _o.img.width,
             _o.img.height).hide();
         _name = _r.text(
-            _o.attr.x + _o.img.width + (_o.attr.width - _o.img.width) / 2,
-            _o.attr.y + myflow.config.lineHeight / 2, _o.name.text).hide()
+                _o.attr.x + _o.img.width + (_o.attr.width - _o.img.width) / 2,
+                _o.attr.y + myflow.config.lineHeight / 2, _o.name.text).hide()
             .attr(_o.name);
         _text = _r.text(
-            _o.attr.x + _o.img.width + (_o.attr.width - _o.img.width) / 2,
-            _o.attr.y + (_o.attr.height - myflow.config.lineHeight) / 2 +
-            myflow.config.lineHeight, _o.text.text).hide()
+                _o.attr.x + _o.img.width + (_o.attr.width - _o.img.width) / 2,
+                _o.attr.y + (_o.attr.height - myflow.config.lineHeight) / 2 +
+                myflow.config.lineHeight, _o.text.text).hide()
             .attr(_o.text); // 文本
 
         // 拖动处理----------------------------------------
-        _rect.drag(function (dx, dy) {
+        _rect.drag(function(dx, dy) {
             dragMove(dx, dy);
-        }, function () {
+        }, function() {
             dragStart()
-        }, function () {
+        }, function() {
             dragUp();
         });
-        _img.drag(function (dx, dy) {
+        _img.drag(function(dx, dy) {
             dragMove(dx, dy);
-        }, function () {
+        }, function() {
             dragStart()
-        }, function () {
+        }, function() {
             dragUp();
         });
-        _name.drag(function (dx, dy) {
+        _name.drag(function(dx, dy) {
             dragMove(dx, dy);
-        }, function () {
+        }, function() {
             dragStart()
-        }, function () {
+        }, function() {
             dragUp();
         });
-        _text.drag(function (dx, dy) {
+        _text.drag(function(dx, dy) {
             dragMove(dx, dy);
-        }, function () {
+        }, function() {
             dragStart()
-        }, function () {
+        }, function() {
             dragUp();
         });
 
-        var dragMove = function (dx, dy) { // 拖动中
+        var dragMove = function(dx, dy) { // 拖动中
             if (!myflow.config.editable)
                 return;
 
@@ -312,7 +312,7 @@
             resize();
         };
 
-        var dragStart = function () { // 开始拖动
+        var dragStart = function() { // 开始拖动
             _ox = _rect.attr("x");
             _oy = _rect.attr("y");
             _rect.attr({
@@ -326,7 +326,7 @@
             });
         };
 
-        var dragUp = function () { // 拖动结束
+        var dragUp = function() { // 拖动结束
             _rect.attr({
                 opacity: 1
             });
@@ -353,85 +353,85 @@
             fill: '#000',
             stroke: '#fff',
             cursor: 's-resize'
-        }).hide().drag(function (dx, dy) {
+        }).hide().drag(function(dx, dy) {
             bdragMove(dx, dy, 't');
-        }, function () {
+        }, function() {
             bdragStart(this.attr('x') + _bw / 2, this.attr('y') + _bw /
                 2, 't');
-        }, function () { }); // 上
+        }, function() {}); // 上
         _bdots['lt'] = _r.rect(0, 0, _bw, _bw).attr({
             fill: '#000',
             stroke: '#fff',
             cursor: 'nw-resize'
-        }).hide().drag(function (dx, dy) {
+        }).hide().drag(function(dx, dy) {
             bdragMove(dx, dy, 'lt');
-        }, function () {
+        }, function() {
             bdragStart(this.attr('x') + _bw / 2, this.attr('y') + _bw /
                 2, 'lt');
-        }, function () { }); // 左上
+        }, function() {}); // 左上
         _bdots['l'] = _r.rect(0, 0, _bw, _bw).attr({
             fill: '#000',
             stroke: '#fff',
             cursor: 'w-resize'
-        }).hide().drag(function (dx, dy) {
+        }).hide().drag(function(dx, dy) {
             bdragMove(dx, dy, 'l');
-        }, function () {
+        }, function() {
             bdragStart(this.attr('x') + _bw / 2, this.attr('y') + _bw /
                 2, 'l');
-        }, function () { }); // 左
+        }, function() {}); // 左
         _bdots['lb'] = _r.rect(0, 0, _bw, _bw).attr({
             fill: '#000',
             stroke: '#fff',
             cursor: 'sw-resize'
-        }).hide().drag(function (dx, dy) {
+        }).hide().drag(function(dx, dy) {
             bdragMove(dx, dy, 'lb');
-        }, function () {
+        }, function() {
             bdragStart(this.attr('x') + _bw / 2, this.attr('y') + _bw /
                 2, 'lb');
-        }, function () { }); // 左下
+        }, function() {}); // 左下
         _bdots['b'] = _r.rect(0, 0, _bw, _bw).attr({
             fill: '#000',
             stroke: '#fff',
             cursor: 's-resize'
-        }).hide().drag(function (dx, dy) {
+        }).hide().drag(function(dx, dy) {
             bdragMove(dx, dy, 'b');
-        }, function () {
+        }, function() {
             bdragStart(this.attr('x') + _bw / 2, this.attr('y') + _bw /
                 2, 'b');
-        }, function () { }); // 下
+        }, function() {}); // 下
         _bdots['rb'] = _r.rect(0, 0, _bw, _bw).attr({
             fill: '#000',
             stroke: '#fff',
             cursor: 'se-resize'
-        }).hide().drag(function (dx, dy) {
+        }).hide().drag(function(dx, dy) {
             bdragMove(dx, dy, 'rb');
-        }, function () {
+        }, function() {
             bdragStart(this.attr('x') + _bw / 2, this.attr('y') + _bw /
                 2, 'rb');
-        }, function () { }); // 右下
+        }, function() {}); // 右下
         _bdots['r'] = _r.rect(0, 0, _bw, _bw).attr({
             fill: '#000',
             stroke: '#fff',
             cursor: 'w-resize'
-        }).hide().drag(function (dx, dy) {
+        }).hide().drag(function(dx, dy) {
             bdragMove(dx, dy, 'r');
-        }, function () {
+        }, function() {
             bdragStart(this.attr('x') + _bw / 2, this.attr('y') + _bw /
                 2, 'r')
-        }, function () { }); // 右
+        }, function() {}); // 右
         _bdots['rt'] = _r.rect(0, 0, _bw, _bw).attr({
             fill: '#000',
             stroke: '#fff',
             cursor: 'ne-resize'
-        }).hide().drag(function (dx, dy) {
+        }).hide().drag(function(dx, dy) {
             bdragMove(dx, dy, 'rt');
-        }, function () {
+        }, function() {
             bdragStart(this.attr('x') + _bw / 2, this.attr('y') + _bw /
                 2, 'rt')
-        }, function () { }); // 右上
-        $([_bdots['t'].node, _bdots['lt'].node, _bdots['l'].node, _bdots['lb'].node, _bdots['b'].node, _bdots['rb'].node, _bdots['r'].node, _bdots['rt'].node]).click(function () { return false; });
+        }, function() {}); // 右上
+        $([_bdots['t'].node, _bdots['lt'].node, _bdots['l'].node, _bdots['lb'].node, _bdots['b'].node, _bdots['rb'].node, _bdots['r'].node, _bdots['rt'].node]).click(function() { return false; });
 
-        var bdragMove = function (dx, dy, t) {
+        var bdragMove = function(dx, dy, t) {
             if (!myflow.config.editable)
                 return;
             var x = _bx + dx,
@@ -475,14 +475,14 @@
             resize();
             // $('body').append(t);
         };
-        var bdragStart = function (ox, oy, t) {
+        var bdragStart = function(ox, oy, t) {
             _bx = ox;
             _by = oy;
         };
 
         // 事件处理--------------------------------
         $([_rect.node, _text.node, _name.node, _img.node]).bind('click',
-            function () {
+            function() {
                 if (!myflow.config.editable)
                     return;
 
@@ -505,7 +505,7 @@
                 return false;
             });
 
-        var clickHandler = function (e, src) {
+        var clickHandler = function(e, src) {
             console.log('clickHandler')
             if (!myflow.config.editable)
                 return;
@@ -517,7 +517,7 @@
         };
         $(_r).bind('click', clickHandler);
 
-        var textchangeHandler = function (e, text, src) {
+        var textchangeHandler = function(e, text, src) {
             console.log('textchangeHandler')
             if (src.getId() == _id) {
                 _text.attr({
@@ -559,7 +559,7 @@
             var rx = _bbox.x + _o.margin,
                 ry = _bbox.y + _o.margin,
                 rw = _bbox.width -
-                    _o.margin * 2,
+                _o.margin * 2,
                 rh = _bbox.height - _o.margin * 2;
 
             _rect.attr({
@@ -644,7 +644,7 @@
 
         // 函数----------------
         // 转化json字串
-        this.toJson = function () {
+        this.toJson = function() {
             var data = "{type:'" + _o.type + "',text:{text:'" +
                 _text.attr('text') + "'}, attr:{ x:" +
                 Math.round(_rect.attr('x')) + ", y:" +
@@ -663,7 +663,7 @@
             console.log(data)
         };
         // 从数据中恢复图
-        this.restore = function (data) {
+        this.restore = function(data) {
             var obj = data;
             // if (typeof data === 'string')
             // obj = eval(data);
@@ -677,15 +677,15 @@
             console.log('从数据中恢复图')
         };
 
-        this.getBBox = function () {
+        this.getBBox = function() {
             console.log('getBBox')
             return _bbox;
         };
-        this.getId = function () {
+        this.getId = function() {
             console.log('getId')
             return _id;
         };
-        this.remove = function () {
+        this.remove = function() {
             _rect.remove();
             _text.remove();
             _name.remove();
@@ -697,11 +697,11 @@
             console.log('remove')
 
         };
-        this.text = function () {
+        this.text = function() {
             console.log('text')
             return _text.attr('text');
         };
-        this.attr = function (attr) {
+        this.attr = function(attr) {
             if (attr)
                 _rect.attr(attr);
         };
@@ -709,7 +709,7 @@
         console.log('myflow.rect ')
     };
 
-    myflow.path = function (o, r, from, to) {
+    myflow.path = function(o, r, from, to) {
         var _this = this,
             _r = r,
             _o = $.extend(true, {}, myflow.config.path),
@@ -717,7 +717,7 @@
             _ox, _oy, _from = from,
             _to = to,
             _id = 'path' +
-                myflow.util.nextId(),
+            myflow.util.nextId(),
             _dotList, _autoText = true;
 
         // 点
@@ -732,45 +732,45 @@
             switch (_t) {
                 case 'from':
                     _n = _r.rect(pos.x - _o.attr.fromDot.width / 2,
-                        pos.y - _o.attr.fromDot.height / 2,
-                        _o.attr.fromDot.width, _o.attr.fromDot.height)
+                            pos.y - _o.attr.fromDot.height / 2,
+                            _o.attr.fromDot.width, _o.attr.fromDot.height)
                         .attr(_o.attr.fromDot);
                     break;
                 case 'big':
                     _n = _r.rect(pos.x - _o.attr.bigDot.width / 2,
-                        pos.y - _o.attr.bigDot.height / 2,
-                        _o.attr.bigDot.width, _o.attr.bigDot.height)
+                            pos.y - _o.attr.bigDot.height / 2,
+                            _o.attr.bigDot.width, _o.attr.bigDot.height)
                         .attr(_o.attr.bigDot);
                     break;
                 case 'small':
                     _n = _r.rect(pos.x - _o.attr.smallDot.width / 2,
-                        pos.y - _o.attr.smallDot.height / 2,
-                        _o.attr.smallDot.width, _o.attr.smallDot.height)
+                            pos.y - _o.attr.smallDot.height / 2,
+                            _o.attr.smallDot.width, _o.attr.smallDot.height)
                         .attr(_o.attr.smallDot);
                     break;
                 case 'to':
                     _n = _r.rect(pos.x - _o.attr.toDot.width / 2,
-                        pos.y - _o.attr.toDot.height / 2,
-                        _o.attr.toDot.width, _o.attr.toDot.height)
+                            pos.y - _o.attr.toDot.height / 2,
+                            _o.attr.toDot.width, _o.attr.toDot.height)
                         .attr(_o.attr.toDot);
 
                     break;
             }
             if (_n && (_t == 'big' || _t == 'small')) {
-                _n.drag(function (dx, dy) {
+                _n.drag(function(dx, dy) {
                     dragMove(dx, dy);
-                }, function () {
+                }, function() {
                     dragStart()
-                }, function () {
+                }, function() {
                     dragUp();
                 }); // 初始化拖动
-                var dragMove = function (dx, dy) { // 拖动中
+                var dragMove = function(dx, dy) { // 拖动中
                     var x = (_ox + dx),
                         y = (_oy + dy);
                     _this.moveTo(x, y);
                 };
 
-                var dragStart = function () { // 开始拖动
+                var dragStart = function() { // 开始拖动
                     if (_t == 'big') {
                         _ox = _n.attr("x") + _o.attr.bigDot.width / 2;
                         _oy = _n.attr("y") + _o.attr.bigDot.height / 2;
@@ -781,42 +781,42 @@
                     }
                 };
 
-                var dragUp = function () { // 拖动结束
+                var dragUp = function() { // 拖动结束
 
                 };
             }
-            $(_n.node).click(function () { return false; });
+            $(_n.node).click(function() { return false; });
 
-            this.type = function (t) {
+            this.type = function(t) {
                 if (t)
                     _t = t;
                 else
                     return _t;
             };
-            this.node = function (n) {
+            this.node = function(n) {
                 if (n)
                     _n = n;
                 else
                     return _n;
             };
-            this.left = function (l) {
+            this.left = function(l) {
                 if (l)
                     _lt = l;
                 else
                     return _lt;
             };
-            this.right = function (r) {
+            this.right = function(r) {
                 if (r)
                     _rt = r;
                 else
                     return _rt;
             };
-            this.remove = function () {
+            this.remove = function() {
                 _lt = null;
                 _rt = null;
                 _n.remove();
             };
-            this.pos = function (pos) {
+            this.pos = function(pos) {
                 if (pos) {
                     _pos = pos;
                     _n.attr({
@@ -829,7 +829,7 @@
                 }
             };
 
-            this.moveTo = function (x, y) {
+            this.moveTo = function(x, y) {
                 this.pos({
                     x: x,
                     y: y
@@ -871,7 +871,7 @@
                             y: _pos.y
                         };
                         if (myflow.util.isLine(_lt.left().pos(), pos, _rt
-                            .right().pos())) {
+                                .right().pos())) {
                             _t = 'small';
                             _n.attr(_o.attr.smallDot);
                             this.pos(pos);
@@ -888,21 +888,21 @@
                         break;
                     case 'small': // 移动小点时，转变为大点，增加俩个小点
                         if (_lt && _rt && !myflow.util.isLine(_lt.pos(), {
-                            x: _pos.x,
-                            y: _pos.y
-                        }, _rt.pos())) {
+                                x: _pos.x,
+                                y: _pos.y
+                            }, _rt.pos())) {
 
                             _t = 'big';
 
                             _n.attr(_o.attr.bigDot);
                             var lt = new dot('small', myflow.util.center(_lt
-                                .pos(), _pos), _lt, _lt
-                                    .right());
+                                    .pos(), _pos), _lt, _lt
+                                .right());
                             _lt.right(lt);
                             _lt = lt;
 
                             var rt = new dot('small', myflow.util.center(_rt
-                                .pos(), _pos), _rt.left(),
+                                    .pos(), _pos), _rt.left(),
                                 _rt);
                             _rt.left(rt);
                             _rt = rt;
@@ -928,7 +928,7 @@
             // if(!_from) throw '没有from节点!';
             var _fromDot, _toDot, _fromBB = _from.getBBox(),
                 _toBB = _to
-                    .getBBox(),
+                .getBBox(),
                 _fromPos, _toPos;
 
             _fromPos = myflow.util.connPoint(_fromBB, {
@@ -946,7 +946,7 @@
             _fromDot.right().right(_toDot);
 
             // 转换为path格式的字串
-            this.toPathString = function () {
+            this.toPathString = function() {
                 if (!_fromDot)
                     return '';
 
@@ -966,14 +966,14 @@
                     arrPos[2].y + 'z';
                 return [p, arr];
             };
-            this.toJson = function () {
+            this.toJson = function() {
                 var data = "[",
                     d = _fromDot;
 
                 while (d) {
                     if (d.type() == 'big')
                         data += "{x:" + Math.round(d.pos().x) + ",y:" +
-                            Math.round(d.pos().y) + "},";
+                        Math.round(d.pos().y) + "},";
                     d = d.right();
                 }
                 if (data.substring(data.length - 1, data.length) == ',')
@@ -981,7 +981,7 @@
                 data += "]";
                 return data;
             };
-            this.restore = function (data) {
+            this.restore = function(data) {
                 var obj = data,
                     d = _fromDot.right();
 
@@ -994,13 +994,13 @@
                 this.hide();
             };
 
-            this.fromDot = function () {
+            this.fromDot = function() {
                 return _fromDot;
             };
-            this.toDot = function () {
+            this.toDot = function() {
                 return _toDot;
             };
-            this.midDot = function () { // 返回中间点
+            this.midDot = function() { // 返回中间点
                 var mid = _fromDot.right(),
                     end = _fromDot.right().right();
                 while (end.right() && end.right().right()) {
@@ -1009,21 +1009,21 @@
                 }
                 return mid;
             };
-            this.show = function () {
+            this.show = function() {
                 var d = _fromDot;
                 while (d) {
                     d.node().show();
                     d = d.right();
                 }
             };
-            this.hide = function () {
+            this.hide = function() {
                 var d = _fromDot;
                 while (d) {
                     d.node().hide();
                     d = d.right();
                 }
             };
-            this.remove = function () {
+            this.remove = function() {
                 var d = _fromDot;
                 while (d) {
                     if (d.right()) {
@@ -1047,17 +1047,17 @@
 
         _text = _r.text(0, 0, _o.text.text || _o.text.patten.replace('{from}', _from.text()).replace('{to}',
             _to.text())).attr(_o.attr.text);
-        _text.drag(function (dx, dy) {
+        _text.drag(function(dx, dy) {
             if (!myflow.config.editable)
                 return;
             _text.attr({
                 x: _ox + dx,
                 y: _oy + dy
             });
-        }, function () {
+        }, function() {
             _ox = _text.attr('x');
             _oy = _text.attr('y');
-        }, function () {
+        }, function() {
             var mid = _dotList.midDot().pos();
             _textPos = {
                 x: _text.attr('x') - mid.x,
@@ -1068,7 +1068,7 @@
         refreshpath(); // 初始化路径
 
         // 事件处理--------------------
-        $([_path.node, _arrow.node, _text.node]).bind('click', function () {
+        $([_path.node, _arrow.node, _text.node]).bind('click', function() {
             if (!myflow.config.editable)
                 return;
             $(_r).trigger('click', _this);
@@ -1077,7 +1077,7 @@
         });
 
         // 处理点击事件，线或矩形
-        var clickHandler = function (e, src) {
+        var clickHandler = function(e, src) {
             console.log('clickHandler2处理点击事件，线或矩形')
             if (!myflow.config.editable)
                 return;
@@ -1102,7 +1102,7 @@
         $(_r).bind('click', clickHandler);
 
         // 删除事件处理
-        var removerectHandler = function (e, src) {
+        var removerectHandler = function(e, src) {
             if (!myflow.config.editable)
                 return;
             if (src &&
@@ -1115,7 +1115,7 @@
         $(_r).bind('removerect', removerectHandler);
 
         // 矩形移动时间处理
-        var rectresizeHandler = function (e, src) {
+        var rectresizeHandler = function(e, src) {
             if (!myflow.config.editable)
                 return;
             if (_from && _from.getId() == src.getId()) {
@@ -1149,7 +1149,7 @@
         };
         $(_r).bind('rectresize', rectresizeHandler);
 
-        var textchangeHandler = function (e, v, src) {
+        var textchangeHandler = function(e, v, src) {
             if (src.getId() == _id) { // 改变自身文本
                 _text.attr({
                     text: v
@@ -1176,14 +1176,14 @@
         $(_r).bind('textchange', textchangeHandler);
 
         // 函数-------------------------------------------------
-        this.from = function () {
+        this.from = function() {
             return _from;
         };
-        this.to = function () {
+        this.to = function() {
             return _to;
         };
         // 转化json数据
-        this.toJson = function () {
+        this.toJson = function() {
             var data = "{from:'" + _from.getId() + "',to:'" + _to.getId() +
                 "', dots:" + _dotList.toJson() + ",text:{text:'" +
                 _text.attr('text') + "',textPos:{x:" +
@@ -1199,7 +1199,7 @@
             return data;
         };
         // 恢复
-        this.restore = function (data) {
+        this.restore = function(data) {
             var obj = data;
 
             _o = $.extend(true, _o, data);
@@ -1213,23 +1213,23 @@
             _dotList.restore(obj.dots);
         };
         // 删除
-        this.remove = function () {
+        this.remove = function() {
             _dotList.remove();
             _path.remove();
             _arrow.remove();
             _text.remove();
             try {
                 $(_r).unbind('click', clickHandler);
-            } catch (e) { }
+            } catch (e) {}
             try {
                 $(_r).unbind('removerect', removerectHandler);
-            } catch (e) { }
+            } catch (e) {}
             try {
                 $(_r).unbind('rectresize', rectresizeHandler);;
-            } catch (e) { }
+            } catch (e) {}
             try {
                 $(_r).unbind('textchange', textchangeHandler);
-            } catch (e) { }
+            } catch (e) {}
         };
         // 刷新路径
         function refreshpath() {
@@ -1248,13 +1248,13 @@
             // $('body').append('refresh.');
         }
 
-        this.getId = function () {
+        this.getId = function() {
             return _id;
         };
-        this.text = function () {
+        this.text = function() {
             return _text.attr('text');
         };
-        this.attr = function (attr) {
+        this.attr = function(attr) {
             if (attr && attr.path)
                 _path.attr(attr.path);
             if (attr && attr.arrow)
@@ -1264,26 +1264,26 @@
         console.log('myflow.path')
     };
 
-    myflow.props = function (o, r) {
+    myflow.props = function(o, r) {
         console.log('myflow.props')
         var _this = this,
             _pdiv = $('#myflow_props').hide().draggable({
                 handle: '#myflow_props_handle'
             }).resizable().css(myflow.config.props.attr).bind('click',
-                function () {
+                function() {
                     return false;
                 }),
             _tb = _pdiv.find('table'),
             _r = r,
             _src;
 
-        var showpropsHandler = function (e, props, src) {
+        var showpropsHandler = function(e, props, src) {
             console.log('连续点击不刷新')
             if (_src && _src.getId() == src.getId()) { // 连续点击不刷新
                 return;
             }
             _src = src;
-            $(_tb).find('.editor').each(function () {
+            $(_tb).find('.editor').each(function() {
                 var e = $(this).data('editor');
                 if (e)
                     e.destroy();
@@ -1305,9 +1305,9 @@
 
     // 属性编辑器
     myflow.editors = {
-        textEditor: function () {
+        textEditor: function() {
             var _props, _k, _div, _src, _r;
-            this.init = function (props, k, div, src, r) {
+            this.init = function(props, k, div, src, r) {
                 _props = props;
                 _k = k;
                 _div = div;
@@ -1315,7 +1315,7 @@
                 _r = r;
 
                 $('<input  style="width:100%;"/>').val(_src.text()).change(
-                    function () {
+                    function() {
                         props[_k].value = $(this).val();
                         $(_r).trigger('textchange', [$(this).val(), _src]);
                     }).appendTo('#' + _div);
@@ -1323,8 +1323,8 @@
 
                 $('#' + _div).data('editor', this);
             };
-            this.destroy = function () {
-                $('#' + _div + ' input').each(function () {
+            this.destroy = function() {
+                $('#' + _div + ' input').each(function() {
                     _props[_k].value = $(this).val();
                     $(_r).trigger('textchange', [$(this).val(), _src]);
                 });
@@ -1336,11 +1336,11 @@
 
     // 初始化流程
     //初始化 画布
-    myflow.init = function (c, o) {
+    myflow.init = function(c, o) {
         console.log('myflow.init')
         console.log(c)
         var _w = $(window).width(),
-            _h = $(window).height() - 200, //kkkkkk 预留200给footer
+            _h = $(window).height() - 300, //kkkkkk 预留200给footer
             _r = Raphael(c, _w * 1, _h * 1),
             _states = {},
             _paths = {};
@@ -1350,7 +1350,7 @@
          * 删除： 删除状态时，触发removerect事件，连接在这个状态上当路径监听到这个事件，触发removepath删除自身；
          * 删除路径时，触发removepath事件
          */
-        $(document).keydown(function (arg) {
+        $(document).keydown(function(arg) {
             if (!myflow.config.editable)
                 return;
             if (arg.keyCode == 46) {
@@ -1368,24 +1368,24 @@
             // alert(arg.keyCode);
         });
 
-        $(document).click(function () {
+        $(document).click(function() {
             console.log('dom.click,,document:')
             console.log(document)
             $(_r).data('currNode', null);
             $(_r).trigger('click', {
-                getId: function () {
+                getId: function() {
                     return '00000000';
                 }
             });
-            $(_r).trigger('showprops', [myflow.config.props.props, {    //显示属性窗口kkkkkk
-                getId: function () {
+            $(_r).trigger('showprops', [myflow.config.props.props, { //显示属性窗口kkkkkk
+                getId: function() {
                     return '00000000';
                 }
             }]);
         });
 
         // 删除事件
-        var removeHandler = function (e, src) {
+        var removeHandler = function(e, src) {
             if (!myflow.config.editable)
                 return;
             if (src.getId().substring(0, 4) == 'rect') {
@@ -1400,14 +1400,14 @@
         $(_r).bind('removerect', removeHandler);
 
         // 添加状态
-        $(_r).bind('addrect', function (e, type, o, id) {
+        $(_r).bind('addrect', function(e, type, o, id) {
             // $('body').append(type+', ');r
             var rect = new myflow.rect($.extend(true, {},
                 myflow.config.tools.states[type], o), _r, id)
             _states[rect.getId()] = rect;
         });
         // 添加路径
-        var addpathHandler = function (e, from, to) {
+        var addpathHandler = function(e, from, to) {
             var path = new myflow.path({}, _r, from, to);
             _paths[path.getId()] = path;
         };
@@ -1423,19 +1423,19 @@
                 handle: '#myflow_tools_handle'
             }).css(myflow.config.tools.attr);
 
-            $('#myflow_tools .node').hover(function () {
+            $('#myflow_tools .node').hover(function() {
                 $(this).addClass('mover');
-            }, function () {
+            }, function() {
                 $(this).removeClass('mover');
             });
-            $('#myflow_tools .selectable').click(function () {
+            $('#myflow_tools .selectable').click(function() {
                 $('.selected').removeClass('selected');
                 $(this).addClass('selected');
                 $(_r).data('mod', this.id);
 
             });
 
-            $('#myflow_tools .state').each(function () {
+            $('#myflow_tools .state').each(function() {
                 $(this).draggable({
                     helper: 'clone'
                 });
@@ -1443,7 +1443,7 @@
 
             $(c).droppable({
                 accept: '.state',
-                drop: function (event, ui) {
+                drop: function(event, ui) {
                     console.log('ui.helper.context');
                     console.log(ui.helper.context);
                     var temp = ui.helper.context.innerHTML;
@@ -1452,14 +1452,14 @@
                         attr: {
                             x: ui.helper.offset().left, //释放时位置信息kkkkkk
                             // y: ui.helper.offset().top
-                            y: ui.helper.offset().top - 70//kkkkk
+                            y: ui.helper.offset().top - 70 //kkkkk
                         }
                     }, id]);
                     // $('body').append($(ui).attr('type')+'drop.');
                 }
             });
 
-            $('#myflow_save').click(function () { // 保存
+            $('#myflow_save').click(function() { // 保存
                 var data = '{states:{';
                 for (var k in _states) {
                     if (_states[k]) {
@@ -1484,8 +1484,18 @@
                 myflow.config.tools.save.onclick(data);
             });
             //cclick
-            $("#cclick").click(function () {
-                console.log(myflow.config.tools);
+            $("#cclick").click(function() {
+                // console.log(myflow.config.tools);
+                console.log(this)
+                // outTest("1");
+            })
+
+
+
+            $("#myflow_outTest").click(function() {
+                console.log(this);
+                outTest("1");
+                console.log("outTest-no value");
             })
 
             // 属性框
@@ -1501,10 +1511,10 @@
                 for (var k in data.states) {
                     var rect = new myflow.rect(
                         $
-                            .extend(
-                                true, {},
-                                myflow.config.tools.states[data.states[k].type],
-                                data.states[k]), _r);
+                        .extend(
+                            true, {},
+                            myflow.config.tools.states[data.states[k].type],
+                            data.states[k]), _r);
                     rect.restore(data.states[k]);
                     rmap[k] = rect;
                     _states[rect.getId()] = rect;
@@ -1513,7 +1523,7 @@
             if (data.paths) {
                 for (var k in data.paths) {
                     var p = new myflow.path($.extend(true, {},
-                        myflow.config.tools.path, data.paths[k]),
+                            myflow.config.tools.path, data.paths[k]),
                         _r, rmap[data.paths[k].from],
                         rmap[data.paths[k].to]);
                     p.restore(data.paths[k]);
@@ -1568,12 +1578,12 @@
     }
 
     // 添加jquery方法
-    $.fn.myflow = function (o) {
+    $.fn.myflow = function(o) {
         console.log('$.fn.myflow')
         console.log(myflow.config.editable)
         console.log('$.fn.myflow')
         console.log(o)
-        return this.each(function () {
+        return this.each(function() {
             myflow.init(this, o);
         });
     };

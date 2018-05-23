@@ -1,4 +1,5 @@
 const pageParam = "string from pageTools"
+
 var pageTools = {
     //日期时间格式化，fmt可选格式：'yyyy-MM-dd hh:mm:ss.S')
     timeFmt: function(value, fmt) {
@@ -17,21 +18,25 @@ var pageTools = {
             if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
     },
+
+    //剔除元素
+    removeByValue(arr, val) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == val) {
+                arr.splice(i, 1);
+                break;
+            }
+        }
+    },
+
     //时间日期格式
     numberList: function(n) {
         return n < 10 ? "0" + n : "" + n;
     },
     //数字转货币类型
     toMoney: function(number) {
-        if (parseInt(number) == number) {
-            return number + ".00";
-        } else if (parseInt(number * 10) == number * 10) {
-            return number + "0";
-        } else if (parseInt(number * 100) == number * 100) {
-            return number;
-        } else {
-            return parseFloat(number).toFixed(2);
-        }
+        return parseFloat(number).toFixed(2);
     }
-}
+};
+
 export default pageTools

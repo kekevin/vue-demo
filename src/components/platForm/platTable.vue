@@ -9,6 +9,8 @@
 			<hr />
 			<div class="node" id="myflow_save">
 				<img :src="imgSrc.picSave" />&nbsp;&nbsp;保存到本地</div>
+      <div class="node" id="myflow_reset">&nbsp;&nbsp;重置</div>
+      <div class="node" id="myflow_outTest">&nbsp;&nbsp;myflow_outTest</div>
 			<div>
 				<hr />
 			</div>
@@ -54,6 +56,18 @@
 </template>
 
 <script>
+function outTest(value) {
+  console.log("outTest", value);
+}
+
+$(function() {
+  $("#myflow_outTest").click(function() {
+    console.log(this);
+    outTest("1");
+    console.log("outTest-no value");
+  });
+});
+
 import picSave from "@/components/platForm/myflow/img/save.gif";
 import picSelect from "@/components/platForm/myflow/img/select16.gif";
 import picConnect from "@/components/platForm/myflow/img/16/flow_sequence.png";
@@ -271,6 +285,11 @@ $(function() {
 });
 
 export default {
+  methods: {
+    testMethod(){
+      console.log('testMethod')
+    }
+  },
   data() {
     return {
       imgSrc: {
@@ -396,7 +415,7 @@ ul {
   border: 1px solid #aaa;
   position: absolute;
   background-color: #fff;
-  width: 660px;
+  width: 600px;
   cursor: default;
   padding: 3px;
   margin-top: 10px;
@@ -441,5 +460,4 @@ ul {
 
 .uiState {
 }
-
 </style>
