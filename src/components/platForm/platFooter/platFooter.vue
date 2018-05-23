@@ -30,8 +30,8 @@ export default {
     return {
       tabVal: "1", //tab content显示内容，待交给compute
       tabIndex: 2,
-      addMsg4: { title: "Tab 4", name: "4", content: "Tab 4 content" },
-      addMsg5: { title: "Tab 5", name: "5", content: "Tab 5 content" }
+      addMsg4: { title: "上网人员记录", name: "4", content: "Tab 4 content" },
+      addMsg5: { title: "频率分析", name: "5", content: "Tab 5 content" }
     };
   },
   computed: {

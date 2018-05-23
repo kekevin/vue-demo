@@ -14,9 +14,9 @@ import "@/components/platForm/myflow/lib/jquery-ui-1.8.4.custom/js/jquery-ui-1.8
 // import "@/components/platForm/myflow/lib/raphael2.js";
 // import "@/components/platForm/myflow/lib/raphael-min-old.js";
 import "@/assets/ultra/raphael-min-old.js";
-import "@/components/platForm/myflow/myflow.js";
+// import "@/components/platForm/myflow/myflow.js";
 // import "@/components/platForm/myflow/myflow.jpdl4.js";
-import "@/components/platForm/myflow/myflow.editors.js";
+// import "@/components/platForm/myflow/myflow.editors.js";
 import platTable from "@/components/platForm/platTable";
 
 export default {

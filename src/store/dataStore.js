@@ -4,17 +4,17 @@ export default {
     state: {
         // count: 6,
         tabs: [{
-                title: "Tab 1",
+                title: "上网人员记录",
                 name: "1",
                 content: "Tab 1 content"
             },
             {
-                title: "Tab 2",
+                title: "频率分析",
                 name: "2",
                 content: "Tab 2 content"
             },
             {
-                title: "Tab 3",
+                title: "条件过滤",
                 name: "3",
                 content: "Tab 3 content"
             }
