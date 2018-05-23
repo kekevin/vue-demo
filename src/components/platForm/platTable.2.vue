@@ -8,16 +8,16 @@
 			<ul id="toolsBox" class="toolsBox"></ul>
 			<hr />
 			<div class="node" id="myflow_save">
-				<img :src="imgSrc.picSave" />&nbsp;&nbsp;保存到本地</div>
+				<img src="myflow/img/save.gif" />&nbsp;&nbsp;保存到本地</div>
 			<div>
 				<hr />
 			</div>
 			<div class="node selectable" id="cclick">
 				&nbsp;&nbsp;cclick</div>
 			<div class="node selectable" id="pointer">
-				<img :src="imgSrc.picSelect" />&nbsp;&nbsp;选择</div>
+				<img src="myflow/img/select16.gif" />&nbsp;&nbsp;选择</div>
 			<div class="node selectable" id="path">
-				<img :src="imgSrc.picConnect" />&nbsp;&nbsp;连接</div>
+				<img src="myflow/img/16/flow_sequence.png" />&nbsp;&nbsp;连接</div>
 
 			<!-- <hr /> -->
 
@@ -54,10 +54,6 @@
 </template>
 
 <script>
-import picSave from "@/components/platForm/myflow/img/save.gif";
-import picSelect from "@/components/platForm/myflow/img/select16.gif";
-import picConnect from "@/components/platForm/myflow/img/16/flow_sequence.png";
-
 // // 在坐标（10,50）创建宽320，高200的画布
 // var paper = Raphael(10, 50, 320, 200);
 // // 在坐标（x = 50, y = 40）绘制半径为 10 的圆
@@ -200,7 +196,7 @@ var toolsList = "";
 var topData = [
   {
     topId: "topId1",
-    topName: "字段过滤"
+      topName: "字段过滤"
   },
   {
     topId: "topId2",
@@ -272,13 +268,7 @@ $(function() {
 
 export default {
   data() {
-    return {
-      imgSrc: {
-        picSave,
-        picSelect,
-        picConnect
-      }
-    };
+    return {};
   },
   computed: {},
   mounted() {}
@@ -403,8 +393,8 @@ ul {
   margin-left: 127px;
 }
 
-.topBox {
-  margin-top: 10px;
+.topBox{
+  margin-top: 10px
 }
 
 .topBox li {
@@ -441,5 +431,9 @@ ul {
 
 .uiState {
 }
-
+/* li {
+            float: left;
+            width: 60px;
+            height: 40px
+        } */
 </style>

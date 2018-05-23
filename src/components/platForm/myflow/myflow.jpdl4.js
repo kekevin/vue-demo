@@ -11,7 +11,7 @@
 	});
 
 	$.extend(true, myflow.config.props.props, {
-		name: { name: 'name', label: '名称', value: '新建流程', editor: function () { return new myflow.editors.inputEditor(); } },
+		name: { name: 'name', label: '名称', value: '新建项目', editor: function () { return new myflow.editors.inputEditor(); } },
 		key: { name: 'key', label: '标识', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
 		desc: { name: 'desc', label: '描述', value: '', editor: function () { return new myflow.editors.inputEditor(); } }
 	});
@@ -173,12 +173,103 @@
 				desc: { name: 'desc', label: '描述', value: '', editor: function () { return new myflow.editors.inputEditor(); } }
 			}
 		},
-		//出租屋信息
+		//字段过滤
 		topId1: {
 			showType: 'text', type: 'topId1',
 			name: { text: '<<topId1>>' },
 			text: { text: '字段过滤' },
-			img: { src: 'myflow/img/48/task_empty.png', width: 48, height: 48 },
+			img: { src: 'myflow/img/48/task_empty_blue.png', width: 48, height: 48 },
+			props: {
+				text: { name: 'text', label: '显示', value: '', editor: function () { return new myflow.editors.textEditor(); }, value: '任务' },
+				assignee: { name: 'assignee', label: '用户', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				form: { name: 'form', label: '表单', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				desc: { name: 'desc', label: '描述', value: '', editor: function () { return new myflow.editors.inputEditor(); } }
+			}
+		},
+		//条件过滤
+		topId2: {
+			showType: 'text', type: 'topId2',
+			name: { text: '<<topId2>>' },
+			text: { text: '条件过滤' },
+			img: { src: 'myflow/img/48/task_empty_blue.png', width: 48, height: 48 },
+			props: {
+				text: { name: 'text', label: '显示', value: '', editor: function () { return new myflow.editors.textEditor(); }, value: '任务' },
+				assignee: { name: 'assignee', label: '用户', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				form: { name: 'form', label: '表单', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				desc: { name: 'desc', label: '描述', value: '', editor: function () { return new myflow.editors.inputEditor(); } }
+			}
+		},
+		//频率分析
+		topId3: {
+			showType: 'text', type: 'topId3',
+			name: { text: '<<topId3>>' },
+			text: { text: '频率分析' },
+			img: { src: 'myflow/img/48/task_empty_blue.png', width: 48, height: 48 },
+			props: {
+				text: { name: 'text', label: '显示', value: '', editor: function () { return new myflow.editors.textEditor(); }, value: '任务' },
+				assignee: { name: 'assignee', label: '用户', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				form: { name: 'form', label: '表单', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				desc: { name: 'desc', label: '描述', value: '', editor: function () { return new myflow.editors.inputEditor(); } }
+			}
+		},
+		//分类统计
+		topId4: {
+			showType: 'text', type: 'topId4',
+			name: { text: '<<topId4>>' },
+			text: { text: '分类统计' },
+			img: { src: 'myflow/img/48/task_empty_blue.png', width: 48, height: 48 },
+			props: {
+				text: { name: 'text', label: '显示', value: '', editor: function () { return new myflow.editors.textEditor(); }, value: '任务' },
+				assignee: { name: 'assignee', label: '用户', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				form: { name: 'form', label: '表单', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				desc: { name: 'desc', label: '描述', value: '', editor: function () { return new myflow.editors.inputEditor(); } }
+			}
+		},
+		//条件碰撞
+		topId5: {
+			showType: 'text', type: 'topId5',
+			name: { text: '<<topId5>>' },
+			text: { text: '条件碰撞' },
+			img: { src: 'myflow/img/48/task_empty_blue.png', width: 48, height: 48 },
+			props: {
+				text: { name: 'text', label: '显示', value: '', editor: function () { return new myflow.editors.textEditor(); }, value: '任务' },
+				assignee: { name: 'assignee', label: '用户', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				form: { name: 'form', label: '表单', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				desc: { name: 'desc', label: '描述', value: '', editor: function () { return new myflow.editors.inputEditor(); } }
+			}
+		},
+		//交集比对
+		topId6: {
+			showType: 'text', type: 'topId6',
+			name: { text: '<<topId6>>' },
+			text: { text: '交集比对' },
+			img: { src: 'myflow/img/48/task_empty_blue.png', width: 48, height: 48 },
+			props: {
+				text: { name: 'text', label: '显示', value: '', editor: function () { return new myflow.editors.textEditor(); }, value: '任务' },
+				assignee: { name: 'assignee', label: '用户', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				form: { name: 'form', label: '表单', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				desc: { name: 'desc', label: '描述', value: '', editor: function () { return new myflow.editors.inputEditor(); } }
+			}
+		},
+		//数据合并
+		topId7: {
+			showType: 'text', type: 'topId7',
+			name: { text: '<<topId7>>' },
+			text: { text: '数据合并' },
+			img: { src: 'myflow/img/48/task_empty_blue.png', width: 48, height: 48 },
+			props: {
+				text: { name: 'text', label: '显示', value: '', editor: function () { return new myflow.editors.textEditor(); }, value: '任务' },
+				assignee: { name: 'assignee', label: '用户', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				form: { name: 'form', label: '表单', value: '', editor: function () { return new myflow.editors.inputEditor(); } },
+				desc: { name: 'desc', label: '描述', value: '', editor: function () { return new myflow.editors.inputEditor(); } }
+			}
+		},
+		//差集比对
+		topId8: {
+			showType: 'text', type: 'topId8',
+			name: { text: '<<topId8>>' },
+			text: { text: '差集比对' },
+			img: { src: 'myflow/img/48/task_empty_blue.png', width: 48, height: 48 },
 			props: {
 				text: { name: 'text', label: '显示', value: '', editor: function () { return new myflow.editors.textEditor(); }, value: '任务' },
 				assignee: { name: 'assignee', label: '用户', value: '', editor: function () { return new myflow.editors.inputEditor(); } },

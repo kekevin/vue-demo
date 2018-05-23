@@ -1,9 +1,12 @@
 <template>
 <div>
 	<div style="margin-bottom: 20px;">
-		<el-button size="small" @click="addTab(tabVal)">
-			add tab
-		</el-button>
+		<el-button size="small" @click="addTab(tabVal)">add tab</el-button>
+    <el-button @click="countAdd">addCount:{{count}}</el-button>
+    <el-button @click="show">show-store</el-button>
+    <el-button>add-store</el-button>
+    <el-button>mod-store</el-button>
+    <el-button>del-store</el-button>
 	</div>
 	<el-tabs v-model="tabVal" type="card" closable @tab-remove="removeTab">
 		<el-tab-pane v-for="(item, index) in tabs" :key="item.name" :label="item.title" :name="item.name">
@@ -32,7 +35,21 @@ export default {
       tabIndex: 2
     };
   },
+  computed: {
+    count() {
+         return this.$store.state.dataStore.count;
+    }
+},
   methods: {
+    countAdd(){
+      this.$store.commit("increment");
+    },
+    show(){
+
+    },
+    add(){
+
+    },
     addTab(targetName) {
       let newTabName = ++this.tabIndex + "";
       this.tabs.push({
