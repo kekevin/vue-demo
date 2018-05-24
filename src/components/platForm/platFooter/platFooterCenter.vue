@@ -1,12 +1,13 @@
 <template>
     <div>
         <el-form ref="form" :model="form" label-width="80px">
-            <el-form-item label="tabVal">
-                {{comCenter}}----{{infoTabByName}}
-    <el-button size="small" type="success" @click="showTabContent">刷新属性页面</el-button>
+            <el-form-item label="tabVal11">
+             ---{{getTabToShow}}
+                <!-- {{tabVal}}----{{infoTabByName}} -->
+    <!-- <el-button size="small" type="success" @click="showTabContent">刷新属性页面</el-button> -->
             </el-form-item>
             <el-form-item label="名称">
-                <!-- <el-input v-model="comCenter"></el-input> -->
+                <!-- <el-input v-model="comCenterNameId"></el-input> -->
             </el-form-item>
             <el-form-item label="下拉按钮">
                 <el-select v-model="form.region" placeholder="下拉按钮">
@@ -32,11 +33,25 @@
 </template>
 <script>
 export default {
-  props: ["comCenter"],
   computed: {
-    infoTabByName() {
-      return this.$store.state.dataStore.tabByName;
+    getTabToShow(){
+      console.log('1111111111111111111');
+      console.log(this.$store.getters.getTabToShow)
+      console.log(this.$store.getters.getTabToShow)
+      console.log(this.$store.getters.getTabToShow)
+      console.log(this.$store.getters.getTabToShow)
+      console.log(this.$store.getters.getTabToShow)
+      console.log(this.$store.getters.getTabToShow)
+      console.log(this.$store.getters.getTabToShow)
+      console.log(this.$store.getters.getTabToShow)
+      return this.$store.getters.getTabToShow
     }
+    // infoTabByName() {
+    //   return this.$store.state.dataStore.tabByName;
+    // },
+    //  tabVal(){
+    //   return this.$store.state.dataStore.tabVal
+    // }
   },
   data() {
     return {
@@ -53,16 +68,17 @@ export default {
     };
   },
   watch: {
-    comCenter() {
-      this.$store.commit("modTabContent", this.comCenter);
-    }
+    // comCenterNameId() {
+    //   this.$store.commit("modTabContent", this.comCenterNameId);
+    // }
   },
   methods: {
-    showTabContent() {
-      //刷新属性页面
-      this.$store.commit("modTabContent", this.comCenter);
-    },
+    // showTabContent() {
+    //   //刷新属性页面
+    //   this.$store.commit("modTabContent", this.comCenterNameId);
+    // },
     onSubmit() {
+      console.log(this.$store.state.dataStore.tabVal)
       console.log("submit!");
     }
   }

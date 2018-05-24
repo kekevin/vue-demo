@@ -2,29 +2,69 @@ import Vue from 'vue'
 
 export default {
     state: {
-        // count: 6,
-        tabs: [{
-                title: "上网人员记录",
-                name: "1",
-                content: "Tab 1 content"
-            },
-            {
-                title: "频率分析",
-                name: "2",
-                content: "Tab 2 content"
-            },
-            {
-                title: "条件过滤",
-                name: "3",
-                content: "Tab 3 content"
-            }
+        count: 6,
+        tabs: [
+            // {
+            //     tabId:'',
+            //     type:'',
+            //     attr:'',
+            //     props:'',
+            //     text:'',
+            //     title: "上网人员记录",
+            //     name: "1",
+            //     content: "Tab 1 content"
+            // },
+            // {
+            //     tabId:'',
+            //     type:'',
+            //     attr:'',
+            //     props:'',
+            //     text:'',
+            //     title: "频率分析",
+            //     name: "2",
+            //     content: "Tab 2 content"
+            // },
+            // {
+            //     tabId:'',
+            //     type:'',
+            //     attr:'',
+            //     props:'',
+            //     text:'',
+            //     title: "条件过滤",
+            //     name: "3",
+            //     content: "Tab 3 content"
+            // },
+            // {
+            //     tabId:'',
+            //     type:'',
+            //     attr:'',
+            //     props:'',
+            //     text:'',
+            //     title: "leftId1---Title1",
+            //     name: "4",
+            //     content: "leftId1 content"
+            // },
+            // // {
+            // //     tabId:'',
+            // //     type:'',
+            //     // attr:'',
+            //     // props:'',
+            //     // text:'',
+            //     //     title: "topId1---Title1",
+            // //     name: "5",
+            // //     content: "topId1 content"
+            // // },
         ],
+        //选中的按钮id
+        targetBtnId: '',
+
+        //显示中的tab内容
         tabByName: {
             title: "",
             name: "",
             content: ""
-        }
-        // tabVal:''
+        },
+        tabVal: '1'
     },
     getters: {
         getTabLength(state) {
@@ -36,7 +76,13 @@ export default {
             // console.log('arr')
             return arr
         },
-
+        //根据store里面的tabval值，返回要显示对象
+        getTabToShow(state) {
+            let obj = state.tabs.find(p => {
+                return p.name == state.tabVal
+            })
+            return obj
+        },
         //getters类似compute如果很多很多个组件中都需要用到这个与 show 刚好相反的状态 , 
         //那么我们需要写很多很多个 not_show , 使用 getters 就可以解决这种问题 :
         //我们在组件中使用 $store.state.dialog.show 来获得状态 show , 类似的 , 
@@ -58,6 +104,9 @@ export default {
         tabAdd(state, msg) {
             state.tabs.push(msg)
         },
+        modTabVal(state, id) {
+            state.tabVal = id
+        },
         //删除tab
         delTab(state, msg) {
             for (let i = 0; i < state.tabs.length; i++) {
@@ -66,6 +115,10 @@ export default {
                     break;
                 }
             }
+        },
+        //修改选中的按钮id
+        modTargetBtnId(state, id) {
+            state.targetBtnId = id
         },
         increment(state) {
             state.count++
