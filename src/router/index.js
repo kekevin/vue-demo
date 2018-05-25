@@ -30,6 +30,7 @@ export default new Router({
             path: '/test',
             name: 'vueTest',
             component: vueTest,
-        }
+        },
+
     ]
 })

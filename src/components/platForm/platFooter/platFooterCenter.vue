@@ -34,16 +34,8 @@
 <script>
 export default {
   computed: {
+    //获取要展示的tab内容页
     getTabToShow(){
-      console.log('1111111111111111111');
-      console.log(this.$store.getters.getTabToShow)
-      console.log(this.$store.getters.getTabToShow)
-      console.log(this.$store.getters.getTabToShow)
-      console.log(this.$store.getters.getTabToShow)
-      console.log(this.$store.getters.getTabToShow)
-      console.log(this.$store.getters.getTabToShow)
-      console.log(this.$store.getters.getTabToShow)
-      console.log(this.$store.getters.getTabToShow)
       return this.$store.getters.getTabToShow
     }
     // infoTabByName() {
